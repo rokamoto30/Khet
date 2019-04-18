@@ -14,6 +14,8 @@ public class Cell : MonoBehaviour
     public Board myBoard = null;
     [HideInInspector]
     public RectTransform myRectTransform = null;
+    [HideInInspector]
+    public BasePiece myCurrentPiece = null;
     #endregion
 
     #region Setup

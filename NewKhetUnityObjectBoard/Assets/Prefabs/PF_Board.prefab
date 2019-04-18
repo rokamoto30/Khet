@@ -51,6 +51,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCellPrefab: {fileID: 5036371024829337502, guid: 259b81c4d01451f4093ed034b631ecf6,
     type: 3}
+  myVlinePrefab: {fileID: 616745701468735589, guid: 2a777857afb6ed84391febb8a68d4cb2,
+    type: 3}
+  myHlinePrefab: {fileID: 1875859745473563534, guid: 532af6ace022e1b4fb9f471b4095de6a,
+    type: 3}
+  myVlines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  myHlines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!223 &4594634321746166418
 Canvas:
   m_ObjectHideFlags: 0

@@ -60,11 +60,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BasePiece.cs" />
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Cell.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\RedPositions.cs" />
-    <Compile Include="Assets\Scripts\SilverPositions.cs" />
+    <Compile Include="Assets\Scripts\Hline.cs" />
+    <Compile Include="Assets\Scripts\PieceManager.cs" />
+    <Compile Include="Assets\Scripts\Vline.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/who90/Documents/Homework/CS 196/Khet/NewKhetUnityObjectBoard/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

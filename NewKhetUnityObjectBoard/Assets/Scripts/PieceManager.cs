@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PieceManager : MonoBehaviour
 {
-    public GameObject mPiecePrefab;
+    public GameObject myPiecePrefab;
 
-    private List<BasePiece> myRedPieces = null;
-    private List<BasePiece> mySilverPieces = null;
+    private List<BasePiece> myRedPieces = new List<BasePiece>();
+    private List<BasePiece> mySilverPieces = new List<BasePiece>();
 
-    //format is xposition, yposition, orientation
-    private Dictionary<string, int[,]> startingPositions = new Dictionary<string, int[,]>()
+    //format is xposition, yposition, 
+    private Dictionary<string, int[,]> classicStartingPosition = new Dictionary<string, int[,]>()
     {
         {"Red Pyramid", new int[,]
         {
@@ -80,4 +80,60 @@ public class PieceManager : MonoBehaviour
         }
     };
 
+    private Dictionary<string, Type> myPieceLibrary = new Dictionary<string, Type>()
+    {
+        {"Red Pyramid", typeof(Pyramid)},
+        {"Silver Pyramid", typeof(Pyramid)},
+        {"Red Djed", typeof(Djed)},
+        {"Silver Djed", typeof(Djed)},
+        {"Red Obelisk", typeof(Obelisk)},
+        {"Silver Obelisk", typeof(Obelisk)},
+        {"Red Lazer", typeof(Lazer)},
+        {"Silver Lazer", typeof(Lazer)},
+        {"Red Pharoh", typeof(Pharoh)},
+        {"Silver Pharoh", typeof(Pharoh)}
+    };
+
+    public void Setup(Board board)
+    {
+        CreateAndPlacePieces(board);
+    }
+
+    private void CreateAndPlacePieces(Board board)
+    {
+        List<BasePiece> newPieces = new List<BasePiece>();
+
+        foreach(String name in classicStartingPosition.Keys)
+        {
+            int[,] pieceData = classicStartingPosition[name];
+            for (int i = 0; i < pieceData.GetLength(0); i++)
+            {
+                // Create new object
+                GameObject newPieceObject = Instantiate(myPiecePrefab);
+                newPieceObject.transform.SetParent(transform);
+
+                // Set scale and position
+                newPieceObject.transform.localScale = new Vector3(1, 1, 1);
+                newPieceObject.transform.localRotation = Quaternion.identity;
+
+                // Get the type, apply to new object
+                Type pieceType = myPieceLibrary[name];
+                print("Name: " + name + " type: " + myPieceLibrary[name]);
+                BasePiece newPiece = (BasePiece) newPieceObject.AddComponent(pieceType);
+
+                // Store new piece and setup
+                if (name.Substring(0, 3) == "Red")
+                {
+                    myRedPieces.Add(newPiece);
+                    newPiece.Setup("Red", pieceData[i, 0], pieceData[i, 1], 
+                        pieceData[i, 2], board, this);
+                } else
+                {
+                    mySilverPieces.Add(newPiece);
+                    newPiece.Setup("Silver", pieceData[i, 0], pieceData[i, 1], 
+                        pieceData[i, 2], board, this);
+                }
+            }
+        }
+    }
 }

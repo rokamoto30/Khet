@@ -60,13 +60,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BasePiece.cs" />
-    <Compile Include="Assets\Scripts\Board.cs" />
-    <Compile Include="Assets\Scripts\Cell.cs" />
+    <Compile Include="Assets\asdf.cs" />
+    <Compile Include="Assets\Scripts\Board\Board.cs" />
+    <Compile Include="Assets\Scripts\Board\Cell.cs" />
+    <Compile Include="Assets\Scripts\Board\Hline.cs" />
+    <Compile Include="Assets\Scripts\Board\Vline.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Hline.cs" />
     <Compile Include="Assets\Scripts\PieceManager.cs" />
-    <Compile Include="Assets\Scripts\Vline.cs" />
+    <Compile Include="Assets\Scripts\Pieces\BasePiece.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Djed.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Lazer.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Obelisk.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Pharoh.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Pyramid.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/who90/Documents/Homework/CS 196/Khet/NewKhetUnityObjectBoard/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

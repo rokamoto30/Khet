@@ -11,7 +11,7 @@ public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandl
     [HideInInspector]
     public Board myBoard;
 
-    protected Cell myCurrentCell = null;
+    public Cell myCurrentCell = null;
     protected Cell myTargetCell = null;
     protected int myOrientation = 0;
 
@@ -69,33 +69,37 @@ public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandl
         {
             return false;
         }
+
         myCurrentCell.myCurrentPiece = null;
         myCurrentCell = target;
         myCurrentCell.myCurrentPiece = this;
 
         transform.position = myCurrentCell.transform.position;
-        print("switch sides");
         myPieceManager.SwitchSides();
         return true;
     }
 
-    public virtual bool rotate(bool CCW)
+    public virtual void rotate(bool CCW)
     {
         if (CCW)
         {
+            print("inital orientation: " + myOrientation);
             myOrientation++;
             myOrientation %= 4;
+            print("final orientation: " + myOrientation);
             transform.Rotate(0, 0, 90);
         } else
         {
+            print("inital orientation: " + myOrientation);
             myOrientation--;
             myOrientation %= 4;
-            myOrientation += myOrientation;
+            myOrientation += 4;
             myOrientation %= 4;
+            print("final orientation: " + myOrientation);
             transform.Rotate(0, 0, -90);
         }
+        transform.position = myCurrentCell.transform.position;
         myPieceManager.SwitchSides();
-        return true;
     }
 
     #region Drag
@@ -112,14 +116,17 @@ public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandl
     }
 
     public override void OnDrag(PointerEventData eventData)
-    {
+    { 
         //print("drag");
         base.OnDrag(eventData);
 
+        // Checked in case rotation happens during drag
+        if (GetComponent<Image>().raycastTarget == false)
+        {
+            return;
+        }
         // follow pointer
         transform.position += (Vector3)eventData.delta;
-
-
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -127,6 +134,11 @@ public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandl
         //print("enddrag");
         base.OnEndDrag(eventData);
 
+        // Checked in case rotation happens during drag
+        if (GetComponent<Image>().raycastTarget == false)
+        {
+            return;
+        }
         foreach (Cell cell in myBoard.myAllCells)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.myRectTransform, Input.mousePosition))

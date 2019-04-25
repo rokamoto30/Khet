@@ -284,6 +284,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2073164484883777000, guid: ca83aa40a4fdcc94e84d2b4822298a6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073164484883777000, guid: ca83aa40a4fdcc94e84d2b4822298a6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca83aa40a4fdcc94e84d2b4822298a6c, type: 3}
 --- !u!1 &388604232 stripped
@@ -306,6 +316,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPiecePrefab: {fileID: 9218197017144617535, guid: e9eb82dc143551a429aea01d7ba8e053,
     type: 3}
+  currentSelectedPiece: {fileID: 0}
+  firstTeamsTurn: 0
 --- !u!224 &388604236 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2073164484883777000, guid: ca83aa40a4fdcc94e84d2b4822298a6c,
@@ -554,7 +566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530265899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.8, y: -0.5, z: -0.10117043}
+  m_LocalPosition: {x: -10, y: -0.5, z: -0.10117043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

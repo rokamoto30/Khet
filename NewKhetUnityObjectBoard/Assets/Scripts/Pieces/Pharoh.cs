@@ -41,9 +41,8 @@ public class Pharoh : BasePiece
         GetComponent<Image>().sprite = noHit;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void rotate(bool CCW)
     {
-        
+        return;
     }
 }

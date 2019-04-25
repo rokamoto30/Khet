@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class BasePiece : EventTrigger
 {
     #region start
@@ -76,4 +77,4 @@ public class BasePiece : EventTrigger
 
     #endregion
 
-}
+} */

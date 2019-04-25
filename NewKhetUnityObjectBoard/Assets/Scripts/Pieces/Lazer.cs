@@ -52,9 +52,21 @@ public class Lazer : BasePiece
     {
         return false;
     }
-    // Update is called once per frame
-    void Update()
+
+    public override void rotate(bool CCW)
     {
-        
+        if (myTeam == "Red") {
+            if (myOrientation == 2 && CCW) {
+                base.rotate(CCW);
+            } else if (myOrientation == 3 && !CCW) {
+                base.rotate(CCW);
+            }
+        } else {
+            if (myOrientation == 0 && CCW) {
+                base.rotate(CCW);
+            } else if (myOrientation == 1 && !CCW) {
+                base.rotate(CCW);
+            }
+        }
     }
 }

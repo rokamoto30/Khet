@@ -178,7 +178,7 @@ public class PieceManager : MonoBehaviour
         if (currentSelectedPiece == null)
         {
             return;
-        }
+        }   
         if (Input.GetKey("a"))
         {
             currentSelectedPiece.rotate(true);

@@ -43,4 +43,49 @@ public class Djed : BasePiece
 
         GetComponent<Image>().sprite = noHit;
     }
+
+    public override bool Move(Cell target)
+    {
+        if (Mathf.Abs(myCurrentCell.myBoardPosition[0] - target.myBoardPosition[0]) > 1)
+        {
+            return false;
+        }
+        if (Mathf.Abs(myCurrentCell.myBoardPosition[1] - target.myBoardPosition[1]) > 1)
+        {
+            return false;
+        }
+        if (target.myCurrentPiece != null)
+        {
+            if (target.myCurrentPiece.GetType() == typeof(Pyramid) 
+                || target.myCurrentPiece.GetType() == typeof(Obelisk))
+            {
+                Swap(target);
+                return true;
+            }
+            return false;
+        }
+        myCurrentCell.myCurrentPiece = null;
+
+        myCurrentCell = target;
+
+        myCurrentCell.myCurrentPiece = this;
+        transform.position = myCurrentCell.transform.position;
+        myPieceManager.SwitchSides();
+        return true;
+    }
+
+    private void Swap(Cell target)
+    {
+        BasePiece targetPiece = target.myCurrentPiece;
+
+        targetPiece.myCurrentCell = myCurrentCell;
+        myCurrentCell.myCurrentPiece = targetPiece;
+        targetPiece.transform.position = myCurrentCell.transform.position;
+
+        myCurrentCell = target;
+        myCurrentCell.myCurrentPiece = this;
+        transform.position = myCurrentCell.transform.position;
+
+        myPieceManager.SwitchSides();
+    }
 }

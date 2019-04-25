@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Board\Hline.cs" />
     <Compile Include="Assets\Scripts\Board\Vline.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\PieceManager.cs" />
     <Compile Include="Assets\Scripts\Pieces\BasePiece.cs" />
     <Compile Include="Assets\Scripts\Pieces\Djed.cs" />

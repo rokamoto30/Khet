@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PieceManager : MonoBehaviour
 {
     public GameObject myPiecePrefab;
+
+    public BasePiece currentSelectedPiece = null;
+
+    [HideInInspector]
+    // Starts at false because it gets switched at the beginning of SwitchSides everytime its called.
+    public Boolean firstTeamsTurn = false;
 
     private List<BasePiece> myRedPieces = new List<BasePiece>();
     private List<BasePiece> mySilverPieces = new List<BasePiece>();
@@ -49,7 +56,7 @@ public class PieceManager : MonoBehaviour
         {
             {3, 5, 1 },
             {2, 4, 2 },
-            {7, 4, 1 },
+            {9, 4, 1 },
             {2, 3, 1 },
             {9, 3, 2 },
             {7, 1, 0 },
@@ -97,6 +104,7 @@ public class PieceManager : MonoBehaviour
     public void Setup(Board board)
     {
         CreateAndPlacePieces(board);
+        SwitchSides();
     }
 
     private void CreateAndPlacePieces(Board board)
@@ -134,6 +142,50 @@ public class PieceManager : MonoBehaviour
                         pieceData[i, 2], board, this);
                 }
             }
+        }
+    }
+
+    public void SwitchSides()
+    {
+        firstTeamsTurn = !firstTeamsTurn;
+        currentSelectedPiece = null;
+
+        if (firstTeamsTurn)
+        {
+            foreach (BasePiece piece in myRedPieces)
+            {
+                piece.GetComponent<Image>().raycastTarget = true;
+            }
+            foreach (BasePiece piece in mySilverPieces)
+            {
+                piece.GetComponent<Image>().raycastTarget = false;
+            }
+        } else
+        {
+            foreach (BasePiece piece in mySilverPieces)
+            {
+                piece.GetComponent<Image>().raycastTarget = true;
+            }
+            foreach (BasePiece piece in myRedPieces)
+            {
+                piece.GetComponent<Image>().raycastTarget = false;
+            }
+        }
+    }
+
+    public void Update()
+    {
+        if (currentSelectedPiece == null)
+        {
+            return;
+        }
+        if (Input.GetKey("a"))
+        {
+            currentSelectedPiece.rotate(true);
+        }
+        if (Input.GetKey("d"))
+        {
+            currentSelectedPiece.rotate(false);
         }
     }
 }

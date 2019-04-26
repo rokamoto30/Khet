@@ -16,6 +16,9 @@ public class PieceManager : MonoBehaviour
     private List<BasePiece> myRedPieces = new List<BasePiece>();
     private List<BasePiece> mySilverPieces = new List<BasePiece>();
 
+    public BasePiece redPharoh;
+    public BasePiece silverPharoh;
+
     //format is xposition, yposition, 
     private Dictionary<string, int[,]> classicStartingPosition = new Dictionary<string, int[,]>()
     {
@@ -147,6 +150,13 @@ public class PieceManager : MonoBehaviour
 
     public void SwitchSides()
     {
+<<<<<<< HEAD
+=======
+        if (getWinner())
+        {
+            //TODO do something for winner
+        }
+>>>>>>> 202d6c381576e77ec0147819c07729001741d527
         firstTeamsTurn = !firstTeamsTurn;
         currentSelectedPiece = null;
 
@@ -188,4 +198,15 @@ public class PieceManager : MonoBehaviour
             currentSelectedPiece.rotate(false);
         }
     }
+<<<<<<< HEAD
+=======
+
+    public bool getWinner()
+    {
+        if (!(redPharoh.alive && silverPharoh.alive)) {
+            return true;
+        }
+        return false;
+    }
+>>>>>>> 202d6c381576e77ec0147819c07729001741d527
 }

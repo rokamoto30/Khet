@@ -21,6 +21,7 @@ public class Djed : BasePiece
     public Sprite leftHit;
 
     public override void Setup(string setTeam, int setX, int setY, int setRot, Board setBoard, PieceManager setPieceManager)
+<<<<<<< HEAD
     {
         base.Setup(setTeam, setX, setY, setRot, setBoard, setPieceManager);
 
@@ -76,6 +77,76 @@ public class Djed : BasePiece
 
     private void Swap(Cell target)
     {
+=======
+    {
+        base.Setup(setTeam, setX, setY, setRot, setBoard, setPieceManager);
+
+        Sprite[] sprites;
+        if (setTeam == "Red")
+        {
+            sprites = Resources.LoadAll<Sprite>("Red Djed");
+        }
+        else
+        {
+            sprites = Resources.LoadAll<Sprite>("Silver Djed");
+        }
+        noHit = sprites[0];
+        mirrorHit = sprites[1];
+        backHit = sprites[2];
+        rightHit = sprites[1];
+        upHit = sprites[1];
+        leftHit = sprites[2];
+        downHit = sprites[2];
+
+        GetComponent<Image>().sprite = noHit;
+    }
+
+    public override bool Move(Cell target)
+    {
+
+        if (base.Move(target))
+        {
+            return false;
+        }
+        if (Mathf.Abs(myCurrentCell.myBoardPosition[0] - target.myBoardPosition[0]) > 1)
+        {
+            return false;
+        }
+        if (Mathf.Abs(myCurrentCell.myBoardPosition[1] - target.myBoardPosition[1]) > 1)
+        {
+            return false;
+        }
+        if (myTeam == "Red" && myBoard.mySilverCells.Contains(target))
+        {
+            return false;
+        }
+        if (myTeam != "Red" && myBoard.myRedCells.Contains(target))
+        {
+            return false;
+        }
+        if (target.myCurrentPiece != null)
+        {
+            if (target.myCurrentPiece.GetType() == typeof(Pyramid) 
+                || target.myCurrentPiece.GetType() == typeof(Obelisk))
+            {
+                Swap(target);
+                return true;
+            }
+            return false;
+        }
+        myCurrentCell.myCurrentPiece = null;
+
+        myCurrentCell = target;
+
+        myCurrentCell.myCurrentPiece = this;
+        transform.position = myCurrentCell.transform.position;
+        myPieceManager.SwitchSides();
+        return true;
+    }
+
+    private void Swap(Cell target)
+    {
+>>>>>>> 202d6c381576e77ec0147819c07729001741d527
         BasePiece targetPiece = target.myCurrentPiece;
 
         targetPiece.myCurrentCell = myCurrentCell;

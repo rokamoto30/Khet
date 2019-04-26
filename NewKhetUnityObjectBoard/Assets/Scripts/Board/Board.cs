@@ -15,6 +15,10 @@ public class Board : MonoBehaviour
     [HideInInspector]
     public Cell[,] myAllCells = new Cell[10, 8];
     [HideInInspector]
+    public List<Cell> myRedCells = new List<Cell>();
+    [HideInInspector]
+    public List<Cell> mySilverCells = new List<Cell>();
+    [HideInInspector]
     public Vline[] myVlines = new Vline[9];
     [HideInInspector]
     public Hline[] myHlines = new Hline[7];
@@ -83,11 +87,13 @@ public class Board : MonoBehaviour
                 Image image = cell.GetComponent<Image>();
                 if (cellColors[x, y] == 'r')
                 {
+                    myRedCells.Add(cell);
                     Color red = Color.HSVToRGB(0, 0.8f, 0.8f);
                     image.color = red;
                 }
                 else if (cellColors[x, y] == 's')
                 {
+                    mySilverCells.Add(cell);
                     Color silver = Color.HSVToRGB(240f / 360f, 0.15f, 0.45f);
                     image.color = silver;
                 }

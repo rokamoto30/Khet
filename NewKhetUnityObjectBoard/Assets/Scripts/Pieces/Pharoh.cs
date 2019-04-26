@@ -25,10 +25,18 @@ public class Pharoh : BasePiece
         Sprite[] sprites;
         if (setTeam == "Red")
         {
+<<<<<<< HEAD
+=======
+            myPieceManager.redPharoh = this;
+>>>>>>> 202d6c381576e77ec0147819c07729001741d527
             sprites = Resources.LoadAll<Sprite>("Red Pharoh");
         }
         else
         {
+<<<<<<< HEAD
+=======
+            myPieceManager.silverPharoh = this;
+>>>>>>> 202d6c381576e77ec0147819c07729001741d527
             sprites = Resources.LoadAll<Sprite>("Silver Pharoh");
         }
         noHit = sprites[0];

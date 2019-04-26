@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandler
 {
     [HideInInspector]
+    public bool alive = true;
+    [HideInInspector]
     public string myTeam;
     [HideInInspector]
     public Board myBoard;
@@ -67,6 +69,12 @@ public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandl
         }
         if (Mathf.Abs(myCurrentCell.myBoardPosition[1] - target.myBoardPosition[1]) > 1)
         {
+            return false;
+        }
+        if (myTeam == "Red" && myBoard.mySilverCells.Contains(target)) {
+            return false;
+        }
+        if (myTeam != "Red" && myBoard.myRedCells.Contains(target)) {
             return false;
         }
 
@@ -143,12 +151,13 @@ public abstract class BasePiece : EventTrigger, IBeginDragHandler, IEndDragHandl
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.myRectTransform, Input.mousePosition))
             {
-                if (!Move(cell))
+                if (Move(cell))
                 {
-                    transform.position = myCurrentCell.transform.position;
+                    return;
                 }
             }
         }
+        transform.position = myCurrentCell.transform.position;
     }
     #endregion
 }

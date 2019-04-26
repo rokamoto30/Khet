@@ -46,11 +46,24 @@ public class Djed : BasePiece
 
     public override bool Move(Cell target)
     {
+
+        if (base.Move(target))
+        {
+            return false;
+        }
         if (Mathf.Abs(myCurrentCell.myBoardPosition[0] - target.myBoardPosition[0]) > 1)
         {
             return false;
         }
         if (Mathf.Abs(myCurrentCell.myBoardPosition[1] - target.myBoardPosition[1]) > 1)
+        {
+            return false;
+        }
+        if (myTeam == "Red" && myBoard.mySilverCells.Contains(target))
+        {
+            return false;
+        }
+        if (myTeam != "Red" && myBoard.myRedCells.Contains(target))
         {
             return false;
         }

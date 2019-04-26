@@ -1,4 +1,4 @@
-# Group7Game
+# Khet
 PM: Melissa Chen, Grace Domel
 
 Ryan Okamoto, Daniel Seda
